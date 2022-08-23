@@ -5,3 +5,4 @@ virtualenv/
 .python-version
 __pycache__/
 /static
+.env
