@@ -1,6 +1,6 @@
 import random
-from fabric.contrib.files import append, exists
 from fabric.api import cd, env, local, run
+from fabric.contrib.files import exists, append
 
 REPO_URL = 'https://github.com/JavierHerreroPorras/python-tdd-book'
 
