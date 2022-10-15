@@ -1,4 +1,4 @@
-from selenium.common.keys import Keys
+from selenium.webdriver.common.keys import Keys
 from functional_tests.base import FunctionalTest
 
 MAX_WAIT = 10
