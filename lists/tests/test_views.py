@@ -206,3 +206,24 @@ class NewListViewUnitTest(unittest.TestCase):
 		mock_form.is_valid.return_value = False
 		new_list(self.request)
 		self.assertFalse(mock_form.save.called)
+
+
+class ShareListTest(TestCase):
+
+	def test_post_redirects_to_lists_page(self):
+		list_ = List.objects.create()
+		user = User.objects.create(email='a@b.com')
+		response = self.client.post(
+			f'/lists/{list_.id}/share/',
+			data={'email': user.email}
+		)
+		self.assertRedirects(response, f'/lists/{list_.id}/')
+
+	def test_user_is_added_to_list_instance(self):
+		list_ = List.objects.create()
+		user = User.objects.create(email='a@b.com')
+		self.client.post(
+			f'/lists/{list_.id}/share/',
+			data={'email': user.email}
+		)
+		self.assertIn(user, list_.shared_with.all())
